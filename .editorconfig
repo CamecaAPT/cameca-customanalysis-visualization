@@ -1,0 +1,11 @@
+# top-most EditorConfig file
+root = true
+
+# Use tabs in all code files applicable to this project
+[*.{cs,csx,c,cpp,h,hpp}]
+indent_style = tab
+insert_final_newline = true
+charset = utf-8-bom
+
+[*.cs]
+csharp_style_namespace_declarations = file_scoped:warning
