@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Windows.Media;
 using Cameca.CustomAnalysis.Interface;
 using Cameca.CustomAnalysis.Utilities;
+using Cameca.CustomAnalysis.Visualization.Properties;
 
 namespace Cameca.CustomAnalysis.Visualization.Main3dChartVisualizer;
 
@@ -35,7 +36,7 @@ internal sealed class IonDisplay : BindableBase, IDisposable
 	}
 
 	private bool _isVisible;
-	[Display(Name = "Visible")]
+	[Display(ResourceType = typeof(Resources), Name = nameof(Resources.IonDisplayPropertiesIsVisibleLabel))]
 	public bool IsVisible
 	{
 		get => _isVisible;
@@ -43,7 +44,7 @@ internal sealed class IonDisplay : BindableBase, IDisposable
 	}
 
 	private double _displayPercent = 100d;
-	[Display(Name = "Display Percent")]
+	[Display(ResourceType = typeof(Resources), Name = nameof(Resources.IonDisplayPropertiesDisplayPercentLabel))]
 	[DisplayFormat(DataFormatString = "F2", ApplyFormatInEditMode = true)]
 	[Range(0d, 100d)]
 	public double DisplayPercent
@@ -56,7 +57,7 @@ internal sealed class IonDisplay : BindableBase, IDisposable
 		}
 	}
 
-	[Display(Name = "Display Count")]
+	[Display(ResourceType = typeof(Resources), Name = nameof(Resources.IonDisplayPropertiesDisplayCountLabel))]
 	public int DisplayCount
 	{
 		get

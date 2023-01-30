@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Cameca.CustomAnalysis.Interface;
 using Cameca.CustomAnalysis.Utilities;
+using Cameca.CustomAnalysis.Visualization.Properties;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Cameca.CustomAnalysis.Visualization.Main3dChartVisualizer;
@@ -17,10 +18,10 @@ namespace Cameca.CustomAnalysis.Visualization.Main3dChartVisualizer;
 internal class Main3dChartNode : AnalysisNodeBase
 {
 	public const string UniqueId = "Cameca.CustomAnalysis.Visualization.Main3dChartVisualizer.Main3dChartNode";
-	private const string UnknownName = "Unranged";
+	private static readonly string UnknownName = Resources.Main3dChartUnknownIonName;
 	private static readonly Color UnknownColor = Colors.DarkGray;
 
-	public static INodeDisplayInfo DisplayInfo { get; } = new NodeDisplayInfo("3D Chart Visualizer");
+	public static INodeDisplayInfo DisplayInfo { get; } = new NodeDisplayInfo(Resources.Main3dChartNodeDisplayName);
 
 	private readonly INodeVisibilityControlProvider _nodeVisibilityControlProvider;
 	private readonly IRenderDataFactory _renderDataFactory;
@@ -32,11 +33,11 @@ internal class Main3dChartNode : AnalysisNodeBase
 
 	private IIonDisplayInfo? _ionDisplayInfo = null;
 	private IIonDisplayInfo IonDisplayInfo => _ionDisplayInfo ??= _ionDisplayInfoProvider.Resolve(InstanceId)
-	                                                              ?? throw new InvalidOperationException("Could not resolve IonDisplayInfo");
+	                                                              ?? throw new InvalidOperationException(Resources.ExceptionMessageResolveIonDisplayInfoFailed);
 
 	private IChart3D? _mainChart;
 	private IChart3D MainChart => _mainChart ??= _mainChartProvider.Resolve(InstanceId)
-	                                             ?? throw new InvalidOperationException("Could not resolve MainChart");
+	                                             ?? throw new InvalidOperationException(Resources.ExceptionMessageResolveMainChartFailed);
 
 
 	private readonly List<IonDisplay> _ionDisplay = new();
@@ -77,7 +78,7 @@ internal class Main3dChartNode : AnalysisNodeBase
 		{
 			nodeMenuFactory.ContextMenuItems = new List<IMenuItem>
 			{
-				new MenuAction("Refresh", RenderIonsCommand),
+				new MenuAction(Resources.Main3dChartNodeRefreshCommandLabel, RenderIonsCommand),
 			};
 		}
 
